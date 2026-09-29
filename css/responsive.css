@@ -1,0 +1,110 @@
+/* Breakpoints
+   ≥1600  desktop, matches the Figma frame
+   ≤1600  vertical dividers inside wrapping rows are hidden
+   ≤1280  top-bar menus show icons only, Launcher side panel narrows, Macro editor stacks
+   ≤900   tablet / phone: nav turns into a horizontal strip under the top bar, status bar compacts
+   ≤600   phone: fields stretch to full width, tighter paddings */
+
+@media (max-width:1600px){
+  .row>.vdiv{display:none}
+}
+
+@media (max-width:1400px){
+  .home .side{width:320px;padding:32px 16px 16px}
+  .side hr{width:100%;margin:20px 0}
+  .side img[alt="SEA DPC"]{width:220px!important;height:200px!important}
+  .side img[alt="DPC SEA"]{width:220px!important;height:90px!important}
+  .swatches{gap:12px}
+  .swatches button{width:48px;height:48px;font-size:20px}
+}
+
+@media (max-width:1280px){
+  .tmenu{gap:20px}
+  .tmenu button{gap:0}
+  .tmenu button span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .tmenu button svg{width:22px;height:22px}
+  .me{flex-direction:column!important;overflow:auto}
+  .me>.sec:first-child{width:100%!important;min-height:auto!important}
+  .me .me-t{flex:none!important;max-height:360px}
+  .me .pal{overflow:visible}
+  .home{flex-direction:column}
+  .home .side{width:auto;flex:none;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 32px;padding:20px 24px;border-radius:var(--r-bg) var(--r-bg) 0 0;overflow:visible}
+  .home .side hr{display:none}
+  .home .side-t{flex-basis:100%}
+  .side img[alt="SEA DPC"]{width:120px!important;height:110px!important}
+  .side img[alt="DPC SEA"]{width:160px!important;height:66px!important}
+  .side-def img{width:64px;height:64px}
+  .side-def{gap:24px}
+  .databox{overflow:visible}
+}
+
+@media (max-width:900px){
+  .screen{grid-template-columns:minmax(0,1fr);grid-template-rows:40px auto minmax(0,1fr) auto;column-gap:0;padding:0 8px}
+  .topbar{margin:0 -8px;padding:0 8px}
+  .nav{grid-column:1;grid-row:2;width:auto;height:56px;flex-direction:row;margin-bottom:8px;border-radius:12px}
+  .nav .sc{display:none}
+  .nav .items{flex-direction:row;overflow-x:auto;scrollbar-width:none}
+  .nav .items::-webkit-scrollbar{display:none}
+  .nb{width:64px;height:56px;flex:none}
+  .nb::before{display:none}
+  .nb svg{width:24px;height:24px}
+  .nb.on svg{width:30px;height:30px}
+  .nb.ev img{width:36px}
+  .nb.tab{gap:2px}
+  .nb.tab img{width:22px;height:22px}
+  .nb.tab span{font-size:8px}
+  .nb .warn{left:40px;top:34px;width:12px;height:12px}
+  .main{grid-column:1;grid-row:3;margin-bottom:8px}
+  .main.wide{grid-column:1;grid-row:2/4}
+  .status{grid-row:4;padding:0 12px}
+  .status .r span{display:none}
+  .status .l{gap:10px}
+  .content{padding:16px}
+  .bottom{padding:12px 16px}
+  .refresh span{display:none}
+  .refresh{padding:4px 8px}
+  .sizers{width:84px}
+  .topbar .r{gap:8px}
+  .players{padding:12px 16px}
+  .ocbar .row{padding:0 16px!important;height:auto!important;min-height:64px;row-gap:12px}
+  .ed-head h2{font-size:14px}
+  .me .me-t{max-height:300px}
+  /* on small screens the whole panel scrolls, the action bar stays pinned */
+  .main{overflow:auto}
+  .main>.content{flex:none;overflow:visible;min-height:auto}
+  .main>.bottom,.main>.ocbar{position:sticky;bottom:0;z-index:3;background:#12152D}
+  .main>.ocbar .players{background:#161A33}
+  .ocbar{position:static!important}
+  .pl-tbl{max-height:60vh}
+  .hubrow{flex-wrap:wrap;row-gap:12px}
+  .hubrow .reload{margin-top:0;border-radius:8px;height:44px;width:100%}
+  .home{overflow:auto}
+}
+
+@media (max-width:600px){
+  .row>.f,.row>.rm,.row>.f-wrap,.row>.add{flex:1 1 100%}
+  .row>.num{flex:1 1 calc(33% - 16px)}
+  .row>.vs{display:none}
+  .sec[style*="width"]{width:100%!important}
+  .content{padding:12px}
+  .bottom .btn{min-width:0;flex:1 1 auto}
+  .bottom{justify-content:center}
+  .bottom .grp{flex:1 1 100%;justify-content:center}
+  .btn{padding:0 16px}
+  .ocb{width:calc(50vw - 56px);max-width:128px}
+  .ocrf{width:44px;height:44px}
+  .pl .row{flex-wrap:wrap}
+  .pl .prog{flex:1 1 100%}
+  .home .side{gap:12px 16px}
+  .dbox{height:260px}
+  .pages{gap:6px}
+  .pager .vdiv,.pager>.row{display:none}
+  .pager{min-height:56px;padding:8px}
+  .tlogo{width:72px}
+  .sizers{display:none}
+  .lg-f{padding:0 16px;gap:16px}
+  .ev-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ev-name{font-size:14px}
+  .ev-date{font-size:12px}
+  .add-card{min-height:200px}
+}

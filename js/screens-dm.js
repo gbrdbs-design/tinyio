@@ -85,7 +85,7 @@ R['dm/schedule']={app:'dm',name:'Schedule',menu:'common',render:()=>`
 ${U.topbar('dm','common')}${U.navDM('schedule')}
 <div class="main"><div class="content">
   <div class="row top" style="gap:24px">
-    <section class="sec" style="width:432px">${U.mh('Preset')}<div class="row">${U.dd({w:312,label:'Current preset',v:ST.preset||'SEA Playoffs - Division II',opts:'SEA Playoffs - Division II|SEA Playoffs - Division I|EEU Regular Season'+(ST.presets||[]).map(p=>'|'+p).join('')}).replace('class="f dd"','class="f dd" data-set="preset"')}
+    <section class="sec" style="width:432px">${U.mh('Preset')}<div class="row nw">${U.dd({w:312,label:'Current preset',v:ST.preset||'SEA Playoffs - Division II',opts:'SEA Playoffs - Division II|SEA Playoffs - Division I|EEU Regular Season'+(ST.presets||[]).map(p=>'|'+p).join('')}).replace('class="f dd"','class="f dd" data-set="preset"')}
       <button class="ibtn" data-toast="Preset mentve" title="Mentés">${i('save')}</button><button class="ibtn" data-modal="preset" title="Mentés másként">${i('saveas')}</button><button class="ibtn" data-toast="Preset törölve" title="Törlés">${i('trashfill')}</button></div></section>
     <section class="sec" style="width:360px">${U.mh('Main header',{sheet:1})}<div class="row">${U.txt({w:360,label:'Header text',v:'SEA Playoffs - Division II - Top 8'})}</div></section>
   </div>

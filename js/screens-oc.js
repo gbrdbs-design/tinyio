@@ -14,8 +14,8 @@ ${U.topbar('oc','hub')}${U.navOC('hub')}
     <section class="sec" style="width:205px;gap:16px">${U.mh('Media')}<div class="row">${U.btn('Download media',{k:'ghost',act:'data-toast="Média letöltése elindult"'})}</div></section>
   </div>
   <section class="sec">${U.mh('Templates')}
-    <div class="row top" style="gap:0">
-      <div class="tbl hub-t" style="width:898px"><div class="th">${[['',16],['#',48],['Template',200],['Channel',80],['Layer',80],['Freeze',72],['CG Main',88],['RU',72],['CN',72],['SA',72],['Load',98]].map(([t,w])=>`<div style="width:${w}px${t&&t!=='Template'?';justify-content:center':''}">${t}</div>`).join('')}</div>
+    <div class="row top hubrow" style="gap:0">
+      <div class="tbl hub-t" style="width:898px;flex:0 1 auto"><div class="th">${[['',16],['#',48],['Template',200],['Channel',80],['Layer',80],['Freeze',72],['CG Main',88],['RU',72],['CN',72],['SA',72],['Load',98]].map(([t,w])=>`<div style="width:${w}px${t&&t!=='Template'?';justify-content:center':''}">${t}</div>`).join('')}</div>
         ${ST.tpl.map(([n,ch,l,fr,s,ld],k)=>`<div class="tr" style="height:56px"><div class="grip" style="width:16px">${i('drag')}</div><div class="num" style="width:48px">${k+1}</div><div style="width:200px">${n}</div>
           <div class="cell-num" style="width:80px"><span>${ch}</span><span class="ud">${i('chevup')}${i('chev')}</span></div><div class="num" style="width:80px">${l}</div>
           <div class="c" style="width:72px">${U.cb(fr)}</div>${s.map((v,j)=>`<div class="c" style="width:${j?72:88}px">${ST.connected?stIc(v):stIc(0)}</div>`).join('')}<div class="c" style="width:98px">${U.sw(ld)}</div></div>`).join('')}
@@ -83,7 +83,7 @@ ST.macBody=()=>ST.mac.map(([c,l,s],n)=>`<div class="tr mrow" style="height:49px"
 ST.macFoot=()=>{const t=ST.mac.reduce((a,m)=>a+m[2],0);return `<div style="width:208px;padding-left:24px" class="muted hv">Total actions: ${ST.mac.length}</div><div class="muted hv" style="padding-left:16px">${Math.floor(t/60)}:${String(t%60).padStart(2,'0')}</div>`;};
 R['oc/editor']={app:'oc',name:'Macro editor',menu:'macros',render:()=>`
 ${U.topbar('oc','macros')}${U.navOC('editor')}
-<div class="main"><div class="content me" style="flex-direction:row;gap:48px">
+<div class="main"><div class="content me" style="flex-direction:row;gap:clamp(24px,2.5vw,48px)">
   <section class="sec" style="width:334px;gap:16px;min-height:0">${U.mh('Macro builder',{sheet:1})}
     <div class="tbl me-t" style="display:flex;flex-direction:column;min-height:0;flex:1"><div class="th"><div style="width:208px;padding-left:24px">Button name</div><div style="flex:1">Length</div></div>
       <div class="me-body sbar" style="flex:1;overflow:auto">${ST.macBody()}</div>

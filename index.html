@@ -4,9 +4,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wdth,wght@6..12,75..125,400..1000&display=swap">
 <link rel="stylesheet" href="css/tinyio.css">
 <link rel="stylesheet" href="css/screens.css">
+<link rel="stylesheet" href="css/responsive.css">
 <style>
 /* prototype chrome (outside the app window) */
-#pbar{position:fixed;left:0;right:0;top:0;height:44px;z-index:10;display:flex;align-items:center;gap:12px;padding:0 12px;padding-top:env(safe-area-inset-top,0px);background:rgba(15,19,41,.94);border-bottom:1px solid #3A3F56;font-family:var(--ff)}
+#pbar{box-sizing:border-box;min-height:44px;height:auto;position:fixed;left:0;right:0;top:0;height:44px;z-index:10;display:flex;align-items:center;gap:12px;padding:0 12px;padding-top:env(safe-area-inset-top,0px);background:rgba(15,19,41,.94);border-bottom:1px solid #3A3F56;font-family:var(--ff)}
 .pbrand{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#F9F9FA;white-space:nowrap;display:flex;align-items:center;gap:8px}
 .pbrand small{font-size:10px;color:#565D7A;letter-spacing:.08em}
 #ptabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;min-width:0}

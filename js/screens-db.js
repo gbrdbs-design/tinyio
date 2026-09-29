@@ -51,11 +51,11 @@ ${U.topbar('db','tournament')}
       ${U.txt({w:280,label:'Search',v:ST.pq,ph:'Filters in all fields',search:1}).replace('<input','<input data-pq')}
       ${filt('teams','Has teams',96,'Any|Yes|No')}${filt('api','Has API',96,'Any|Yes|No')}${filt('nat','Nationality',216,'Any|Thailand|Denmark|United States of America|Japan|Canada|Ukraine|Bulgaria|Brazil|Spain|Puerto Rico')}
       ${filt('tw','Has twitter',96,'Any|Yes|No')}${filt('game','Game played',216,'Any|Dota2|CS:GO|Smash Melee|Smash Ultimate|Fortnite|Rocket League')}
-      <span style="flex:1"></span>${U.btn('Reset filters',{k:'ghost',lg:1,w:160,act:'data-reset-filters'})}
+      <span style="flex:1 1 0"></span>${U.btn('Reset filters',{k:'ghost',lg:1,w:160,act:'data-reset-filters'})}
     </div>
-    <div class="tbl pl-tbl" style="flex:1;min-height:0;display:flex;flex-direction:column">
+    <div class="tbl pl-tbl" style="flex:1;min-height:0">
       <div class="th">${COLS.map(([t,w,s])=>`<div style="${w?`width:${w}px`:'flex:1'}">${s?`<span class="sort">${i('sort')}</span>`:''}${t}</div>`).join('')}</div>
-      <div class="pl-body sbar" style="overflow:auto;flex:1">${tableBody()}</div>
+      <div class="pl-body">${tableBody()}</div>
     </div>
   </div>
   <div class="bottom pager">

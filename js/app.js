@@ -6,13 +6,8 @@ const ORDER=['launcher/login','launcher/events','launcher/main','dm/general','dm
 const APPS=[['launcher','Launcher','launcher/login'],['dm','Data Manager','dm/general'],['db','Database Editor','db/players'],['oc','Overlay Controller','oc/hub']];
 let cur=null, scale=1, modal=null;
 
-/* ---------- scaling ---------- */
-function fit(){
-  const bar=$('#pbar').offsetHeight, W=innerWidth, H=innerHeight-bar, pad=W<700?4:16;
-  scale=Math.min((W-2*pad)/1920,(H-2*pad)/1050);
-  win.style.transform=`scale(${scale})`;
-  win.style.left=Math.round((W-1920*scale)/2)+'px'; win.style.top=Math.round(bar+(H-1050*scale)/2)+'px';
-}
+/* ---------- layout ---------- */
+function fit(){ document.documentElement.style.setProperty('--pbar-h',$('#pbar').offsetHeight+'px'); }
 addEventListener('resize',fit);
 
 /* ---------- routing ---------- */
@@ -33,23 +28,25 @@ addEventListener('hashchange',()=>{const k=fromHash(location.hash.slice(1)); if(
 /* ---------- modal / toast ---------- */
 function openModal(id){ const f=R[cur].modals&&R[cur].modals[id]; if(!f) return; closeModal(); modal=id; win.querySelector('.screen').insertAdjacentHTML('beforeend',f()); const inp=win.querySelector('.scrim input'); inp&&inp.focus(); }
 function closeModal(){ const s=win.querySelector('.scrim'); s&&s.remove(); modal=null; }
-let tt; function toast(t){ win.querySelectorAll('.toast').forEach(e=>e.remove()); win.insertAdjacentHTML('beforeend',`<div class="toast" role="status">${i('okc')}<span>${U.esc(t)}</span></div>`); clearTimeout(tt); tt=setTimeout(()=>win.querySelectorAll('.toast').forEach(e=>e.remove()),2400); }
+let tt; function toast(t){ document.querySelectorAll('.toast').forEach(e=>e.remove()); document.body.insertAdjacentHTML('beforeend',`<div class="toast" role="status">${i('okc')}<span>${U.esc(t)}</span></div>`); clearTimeout(tt); tt=setTimeout(()=>document.querySelectorAll('.toast').forEach(e=>e.remove()),2400); }
 
 /* ---------- dropdown menu ---------- */
 let ddOwner=null;
 function openDD(owner,items,onPick,cur){
   closeDD(); ddOwner=owner;
-  const r=owner.getBoundingClientRect(), wr=win.getBoundingClientRect();
+  const r=owner.getBoundingClientRect();
   const m=document.createElement('div'); m.className='ddm'; m.setAttribute('role','listbox');
   m.innerHTML=items.map((it,n)=>typeof it==='string'?`<button data-i="${n}" class="${it===cur?'sel':''}">${U.esc(it)}</button>`:(it.hint?`<div class="hint">${U.esc(it.hint)}</div>`:`<button data-i="${n}" class="${it.cls||''}">${it.ic?i(it.ic):''}${U.esc(it.t)}</button>`)).join('');
-  m.style.left=((r.left-wr.left)/scale)+'px'; m.style.top=((r.bottom-wr.top)/scale+4)+'px'; m.style.minWidth=Math.max(160,r.width/scale)+'px';
-  win.appendChild(m);
-  const bottom=(r.bottom-wr.top)/scale+4+m.offsetHeight; if(bottom>1040) m.style.top=((r.top-wr.top)/scale-4-m.offsetHeight)+'px';
-  const right=(r.left-wr.left)/scale+m.offsetWidth; if(right>1910) m.style.left=(1910-m.offsetWidth)+'px';
+  m.style.minWidth=Math.max(160,r.width)+'px';
+  document.body.appendChild(m);
+  const W=innerWidth,H=innerHeight;
+  let top=r.bottom+4; if(top+m.offsetHeight>H-8) top=Math.max(8,r.top-4-m.offsetHeight);
+  let left=Math.min(r.left,W-8-m.offsetWidth); left=Math.max(8,left);
+  m.style.top=top+'px'; m.style.left=left+'px';
   owner.classList.add('open');
   m.addEventListener('click',e=>{const b=e.target.closest('[data-i]'); if(!b) return; e.stopPropagation(); const it=items[+b.dataset.i]; closeDD(); onPick(it);});
 }
-function closeDD(){ win.querySelectorAll('.ddm').forEach(e=>e.remove()); if(ddOwner){ddOwner.classList.remove('open'); ddOwner=null;} }
+function closeDD(){ document.querySelectorAll('.ddm').forEach(e=>e.remove()); if(ddOwner){ddOwner.classList.remove('open'); ddOwner=null;} }
 
 /* ---------- top-bar menus ---------- */
 const TODO='Ez a képernyő még nincs HTML-ben megépítve (a Figma-ban megvan)';
@@ -72,7 +69,7 @@ function topMenu(btn){
   if(set==='oc'){ if(OCGO[k]) return go(OCGO[k]); if(k==='debug'){ if(cur!=='oc/hub') go('oc/hub'); return openModal('debug'); } return toast(TODO); }
   const items=MENU[key]||[];
   openDD(btn,items.map(x=>({t:x.t,cls:x.go?(x.go===cur?'sel':''):'todo',go:x.go})),it=>it.go?go(it.go):toast(TODO));
-  win.querySelectorAll('.ddm .todo').forEach(b=>b.style.color='var(--t-grey)');
+  document.querySelectorAll('.ddm .todo').forEach(b=>b.style.color='var(--t-grey)');
 }
 
 /* ---------- click delegation ---------- */
@@ -131,8 +128,9 @@ win.addEventListener('keydown',e=>{
   if(e.key==='Enter'&&e.target.id==='macro-name') win.querySelector('[data-save-macro]').click();
   if(e.key==='Enter'&&e.target.id==='preset-name') win.querySelector('[data-save-preset]').click();
 });
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(win.querySelector('.ddm')) closeDD(); else if(modal) closeModal(); } });
-document.addEventListener('click',e=>{ if(!win.contains(e.target)) closeDD(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(document.querySelector('.ddm')) closeDD(); else if(modal) closeModal(); } });
+document.addEventListener('click',e=>{ if(!win.contains(e.target)&&!e.target.closest('.ddm')) closeDD(); });
+win.addEventListener('scroll',()=>closeDD(),true);
 
 /* ---------- prototype bar ---------- */
 $('#ptabs').innerHTML=APPS.map(([k,n,f])=>`<button class="ptab" data-app="${k}" data-first="${f}">${n}</button>`).join('');
