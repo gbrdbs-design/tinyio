@@ -264,3 +264,7 @@ svg.i{width:20px;height:20px;flex:none;display:block}
 .toast svg{color:var(--t-hl)}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* Focus: the field container shows the highlight, never the inner input */
+input:focus,input:focus-visible,textarea:focus,textarea:focus-visible,.box:focus,.box:focus-visible,.lg-f input:focus-visible{outline:none}
+.tbl .cell-in:focus-within{box-shadow:inset 0 0 0 1px var(--t-hl)}

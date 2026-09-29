@@ -28,7 +28,7 @@ ${U.topbar(null)}
 <div class="main wide login">
   <img class="lg-logo" src="img/tinyio-logo.png" alt="TinyIO">
   <form class="lg-form" data-login>
-    <label class="lg-f">${i('user')}<input id="lg-user" value="mccormic" autocomplete="username" aria-label="Felhasználónév"></label>
+    <label class="lg-f">${i('user')}<input id="lg-user" value="gabor_dobos" autocomplete="username" aria-label="Felhasználónév"></label>
     <label class="lg-f">${i('keylock')}<input id="lg-pass" type="password" value="supersecret1" autocomplete="current-password" aria-label="Jelszó"></label>
     <div class="lg-rm">${U.cb(true,'Remember me')}</div>
     <button class="btn pri xl" type="submit">Login</button>

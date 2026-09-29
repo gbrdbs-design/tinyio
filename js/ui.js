@@ -25,7 +25,7 @@ U.nav=(items)=>`<aside class="nav"><button class="sc" aria-label="Görgetés fel
   if(it.img) return `<button class="nb${it.on?' on':''}" data-go="${it.go||''}"><img src="${it.img}" alt="" style="width:40px"></button>`;
   return `<button class="nb${it.on?' on':''}" ${it.go?`data-go="${it.go}"`:`data-toast="${esc(it.t||'Ez a nézet még nincs HTML-ben megépítve')}"`} title="${esc(it.t||'')}">${i(it.ic)}${it.warn?`<span class="warn">${i('warn')}</span>`:''}</button>`;
 }).join('')}</div><button class="sc" aria-label="Görgetés le">${i('down')}</button></aside>`;
-U.status=()=>`<footer class="status"><div class="l"><span style="padding:0 8px">${i('arrowup')}</span><span class="sep"></span>${i('okc')}<span>[13:44:15] <b>Login successful</b></span></div><div class="r"><span>DPC SEA - Winter Tour - 2021   |   November 29, 2021 - January 24, 2022   |   mccormic</span>${i('cloud')}</div></footer>`;
+U.status=()=>`<footer class="status"><div class="l"><span style="padding:0 8px">${i('arrowup')}</span><span class="sep"></span>${i('okc')}<span>[13:44:15] <b>Login successful</b></span></div><div class="r"><span>DPC SEA - Winter Tour - 2021   |   November 29, 2021 - January 24, 2022   |   gabor_dobos</span>${i('cloud')}</div></footer>`;
 
 /* standard app nav sets */
 U.navDM=(active)=>U.nav([{ev:1},
