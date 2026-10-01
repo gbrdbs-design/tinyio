@@ -191,7 +191,7 @@ svg.i{width:20px;height:20px;flex:none;display:block}
 .btn.xl{height:56px;min-width:192px;font-size:16px}
 .btn .plus{position:absolute;right:-6px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--t-main);color:var(--t-dark);display:grid;place-items:center}
 .btn .plus svg{width:12px;height:12px}
-.appbtn{height:clamp(64px,7vw,113px);border-radius:999px;font-size:clamp(18px,1.7vw,32px);padding:0 24px;white-space:nowrap;min-width:0;font-weight:900;text-transform:uppercase;color:var(--t-main);display:flex;align-items:center;justify-content:center;flex:1;transition:filter .15s,transform .15s}
+.appbtn{height:clamp(64px,7vw,113px);border-radius:999px;font-size:clamp(18px,1.7vw,32px);padding:0 24px;white-space:nowrap;min-width:0;font-weight:900;text-transform:uppercase;color:var(--t-dark);display:flex;align-items:center;justify-content:center;flex:1;transition:filter .15s,transform .15s}
 .appbtn:hover{filter:brightness(1.07);transform:translateY(-2px)}
 .appbtn.data{background:var(--b-data)} .appbtn.ctrl{background:var(--b-ctrl)} .appbtn.media{background:var(--b-media)}
 .ibtn{width:32px;height:32px;display:grid;place-items:center;color:var(--t-grey);border-radius:6px;flex:none}
